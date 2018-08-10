@@ -1,1 +1,1 @@
-web: gunicorn pubg.wsgi --log-file -
+web: gunicorn pubg.wsgi --log-file - 
