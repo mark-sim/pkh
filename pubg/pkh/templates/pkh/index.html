@@ -1,0 +1,22 @@
+{% load static %}
+
+<head>
+    <title>PUBG kill hierarchy</title>
+        <link rel="icon" type="image/png" href="{% static 'pkh/images/icons/m.png' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'pkh/css/style.css' %}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'pkh/js/script.js' %}"></script>
+</head>
+
+<div id="header-plugin"></div>
+
+<div class="cntr">
+    <div class="cntr-innr">
+        <label class="search" for="inpt_search">
+            <form action="{% url 'pkh:matches' %}" method="get">
+                <input id="inpt_search" name="user" type="text" placeholder="e.g: shroud"/>
+            </form>
+        </label>
+        <p>Enter PUBG IGN</p>
+    </div>
+</div>
