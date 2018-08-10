@@ -90,7 +90,7 @@ def hierarchy(request, matchId):
     for telemetryEvent in telemetryObject :
         if telemetryEvent['_T'] == "LogPlayerKill":
             listOfKills.append(telemetryEvent)
-            killerName = telemetryEvent['killer']['name']
+            killerName = telemetryEvent['killer']['name'] 
             victimName = telemetryEvent['victim']['name']
             
             # if killerName is an empty string that means this isn't a player kill so we should ignore it
