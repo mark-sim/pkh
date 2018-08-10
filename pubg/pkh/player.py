@@ -26,6 +26,7 @@ class Player:
     def __eq__(self, other):
         return self.name == other
 
+    # debugging
     def __str__(self) :
         toRet = "killer: " + self.name + " victim: "
         for victim in self.victims :
