@@ -4,7 +4,7 @@ class Jsonutil:
     
     def jsonStartingFromRoot(self, rootPlayers) :
         d = {}
-        # PUBG is unique. No players can have the name "PUBG"
+        # PUBG is unique. No players can have the name "PUBG". This will be hidden with css.
         d['name'] = "PUBG"
         d['fake'] = "true"
         if len(rootPlayers) > 0 :
