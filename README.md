@@ -1,7 +1,9 @@
 # pkh : players kill hierarchy tree for [PUBG](https://www.pubg.com/)
 
 pkh is a django web application that allows you to view players kill hierarchy in a game. 
+
 Using it is pretty straightforward. Just enter your IGN and click on any match to generate a kill hierarchy tree for that match.
+
 You can try it out [here](http://pubg-pkh.herokuapp.com/). 
 
 ## How it was done
