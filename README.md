@@ -136,7 +136,11 @@ PUBG recently released their [Official API](https://developer.playbattlegrounds.
 
    That dictionary will contain a link to the telemetry data.
 
-4) Then, I made a request to the telemetry data link which has bunch of [telemetry events](https://documentation.pubg.com/en/telemetry-events.html) and [telemetry objects](https://documentation.pubg.com/en/telemetry-objects.html). To generate a kill hierarchy tree I only needed ```LogPlayerKill``` which is in ```telemetry events```.
+4) Then, I made a request to the telemetry data link which has bunch of [telemetry events](https://documentation.pubg.com/en/telemetry-events.html) and [telemetry objects](https://documentation.pubg.com/en/telemetry-objects.html). 
+
+   To generate a kill hierarchy tree I only needed ```LogPlayerKill``` which is in ```telemetry events```.
 So I iterated through ```telemetry events``` and retrieved all dictionaries which has ``` _T == 'LogPlayerKill' ```.
 
-5) After retrieving ```LogPlayerKill``` data, I created a tree then converted the tree into json format that's accepted by [d3.js collapsible tree](http://mbostock.github.io/d3/talk/20111018/tree.html). Also I added some logic to get rid of players that shouldn't be shown on the kill hierarchy trees (such as players without children and has no parent).
+5) After retrieving ```LogPlayerKill``` data, I created a tree then converted the tree into json format that's accepted by [d3.js collapsible tree](http://mbostock.github.io/d3/talk/20111018/tree.html). 
+   
+   Also I added some logic to get rid of players that shouldn't be shown on the kill hierarchy trees (such as players without children and has no parent).
