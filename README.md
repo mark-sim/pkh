@@ -123,7 +123,7 @@ PUBG recently released their [Official API](https://developer.playbattlegrounds.
    }
 }
 ```
-      This response was used to populate the match tables.
+   This response was used to populate the match tables.
 
 3) The response above only has subset of the full match data. 
 
