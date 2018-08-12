@@ -10,7 +10,7 @@ You can try it out [here](http://pubg-pkh.herokuapp.com/).
 PUBG recently released their [Official API](https://developer.playbattlegrounds.com/).
 1) Request information about the player and a list of their recent matches using the [players endpoint](https://documentation.pubg.com/en/players-endpoint.html).
 
-Sample response looks something like this :
+   Sample response looks something like this :
 ```
 {
    "data":[
@@ -57,11 +57,11 @@ Sample response looks something like this :
    }
 }
 ```
-Then match history of the player is retrieved by ```playerResponse['data'][0]['relationships']['matches']['data']```.
+   Then match history of the player is retrieved by ```playerResponse['data'][0]['relationships']['matches']['data']```.
 
 2) For each match retrieved, I made a request to the [matches endpoint](https://documentation.pubg.com/en/matches-endpoint.html) which contains the results of a completed match such as the game mode played, duration, and which players participated.
 
-Sample response looks something like this :
+   Sample response looks something like this :
 ```
 {
    "data":{
@@ -123,18 +123,18 @@ Sample response looks something like this :
    }
 }
 ```
-This response was used to populate the match tables.
+   This response was used to populate the match tables.
 
 3) The response above only has subset of the full match data. 
 
-In order to get the full match data, I need to make a request to the [telemetry endpoint](https://documentation.pubg.com/en/telemetry.html) which provides further insight into a match.
+   In order to get the full match data, I need to make a request to the [telemetry endpoint](https://documentation.pubg.com/en/telemetry.html) which provides further insight into a match.
 
-In order to retrieve the telemetry object, from the match response retrieved above, get the telemetry id by
+   To retrieve the telemetry object, from the match response retrieved above, get the telemetry id by
 ```telemetryId = matchResponse['data']['relationships']['assets']['data'][0]['id']``` 
 
-then get the link to the telemetry data by iterating through ```matchResponse['included']``` and finding the dictionary that has ``` id == telemetryId```. 
+   then get the link to the telemetry data by iterating through ```matchResponse['included']``` and finding the dictionary that has ``` id == telemetryId```. 
 
-That dictionary will contain a link to the telemetry data.
+   That dictionary will contain a link to the telemetry data.
 
 4) Then, I made a request to the telemetry data link which has bunch of [telemetry events](https://documentation.pubg.com/en/telemetry-events.html) and [telemetry objects](https://documentation.pubg.com/en/telemetry-objects.html). To generate a kill hierarchy tree I only needed ```LogPlayerKill``` which is in ```telemetry events```.
 So I iterated through ```telemetry events``` and retrieved all dictionaries which has ``` _T == 'LogPlayerKill' ```.
