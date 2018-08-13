@@ -144,3 +144,7 @@ So I iterated through ```telemetry events``` and retrieved all dictionaries whic
 5) After retrieving ```LogPlayerKill``` data, I created a tree then converted the tree into json format that's accepted by [d3.js collapsible tree](http://mbostock.github.io/d3/talk/20111018/tree.html). 
    
    Also I added some logic to get rid of players that shouldn't be shown on the kill hierarchy trees (such as players without children and has no parent).
+
+## Examples:
+
+<img src ="https://imgur.com/LXxzbAl"/>
