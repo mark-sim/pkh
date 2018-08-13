@@ -147,4 +147,8 @@ So I iterated through ```telemetry events``` and retrieved all dictionaries whic
 
 ## Examples:
 
+
 ![Imgur](https://i.imgur.com/LXxzbAl.png)
+
+
+![Imgur](https://i.imgur.com/8jxpATL.png)
