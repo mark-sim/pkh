@@ -1,4 +1,4 @@
-# pkh : players kill hierarchy tree for [PUBG](https://www.pubg.com/)
+## pkh : players kill hierarchy tree for [PUBG](https://www.pubg.com/)
 
 pkh is a django web application that allows you to view players kill hierarchy in a game. 
 
