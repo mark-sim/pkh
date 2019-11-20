@@ -6,6 +6,14 @@ Using it is pretty straightforward. Just enter your IGN and click on any match t
 
 You can try it out [here](http://pubg-pkh.herokuapp.com/). 
 
+## Installation
+```
+source venv/bin/activate
+pip3 install -r requirements.txt
+python3 manage.py migrate
+python3 manage.py runserver localhost:8000
+```
+
 ## How it was done
 PUBG recently released their [Official API](https://developer.playbattlegrounds.com/).
 1) Request information about the player and a list of their recent matches using the [players endpoint](https://documentation.pubg.com/en/players-endpoint.html).
