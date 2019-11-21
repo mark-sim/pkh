@@ -18,17 +18,12 @@ header = {
 
 MAX_MATCH_HISTORY = 10
 
-# Create your views here.
 def index(request):
     return render(request, 'pkh/index.html')
 
 def matches(request):
     userValue = request.GET['user']
 
-    # First search in the database whether or not the same player has been searched already.
-
-    # for not pc-na, but can create a button with different regions and take input from that.
-    # handle 404
     r = requests.get("https://api.pubg.com/shards/pc-na/players?filter[playerNames]=" + userValue, headers=header)
 
     if r.status_code != 200 :
@@ -55,11 +50,12 @@ def matches(request):
         for includedElement in matchJson["included"] :
             try:
                 if includedElement['attributes']['stats']['name'] == userValue :
+                    # convert UTC datetime to local datetime
                     dateArray.append(parser.parse(matchJson["data"]["attributes"]["createdAt"]).replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%m/%d/%Y'))
                     rankingArray.append(includedElement['attributes']['stats']['winPlace'])
                     killArray.append(includedElement['attributes']['stats']['kills'])
                     damageArray.append(math.floor(includedElement['attributes']['stats']['damageDealt']))
-                    # prob need to add rideDistance and swimDistance. If it's a string gotta parse it into long or int first.
+                    # distance is sum of walkDistance, rideDistance and swimDistance
                     distance = math.floor(float(includedElement['attributes']['stats']['walkDistance'] + includedElement['attributes']['stats']['rideDistance'] + includedElement['attributes']['stats']['swimDistance']))
                     distanceArray.append(distance)
                     break
@@ -77,25 +73,23 @@ def hierarchy(request, matchId):
                 # This is the telemetry URL with all data about the match.
                 telemetryURL = includedArr['attributes']['URL']
         except Exception:
-            # This means we're at a dictionary that we don't care about
             continue
 
     telemetryObject = requests.get(telemetryURL, headers = header).json()
 
-    # get rid of this after.
-    listOfKills = []
     # list of players already constructed. 
     players = []
 
     for telemetryEvent in telemetryObject :
+        # if event type is LogPlayerKill, get the killer-victim relationship
         if telemetryEvent['_T'] == "LogPlayerKill":
-            listOfKills.append(telemetryEvent)
+            # if killerName is none, it means victim died due to red zone, blue zone, so it shouldn't be included in hiearchy.
+            # used to return empty string, but now None.
+            if not telemetryEvent['killer']:
+                continue
             killerName = telemetryEvent['killer']['name'] 
             victimName = telemetryEvent['victim']['name']
-            
-            # if killerName is an empty string that means this isn't a player kill so we should ignore it
-            if killerName == "" :
-                continue
+        
 
             killerObject = None
             victimObject = None

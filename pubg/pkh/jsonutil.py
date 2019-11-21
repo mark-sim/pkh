@@ -1,12 +1,30 @@
 import json
 
 class Jsonutil:
-    
+    """
+    structure:
+    {
+        name: root
+        children: [
+            {
+                name: child1
+                children: [
+                    ...
+                ]
+            },
+            {
+                name: child2
+                children: [
+                    ...
+                ]
+            },
+        ],
+    }
+    """
     def jsonStartingFromRoot(self, rootPlayers) :
         d = {}
-        # PUBG is unique. No players can have the name "PUBG". This will be hidden with css.
-        d['name'] = "PUBG"
-        d['fake'] = "true"
+        # dummy root
+        d['name'] = "root"
         if len(rootPlayers) > 0 :
             d['children'] = [self.get_nodes(rootPlayer) for rootPlayer in rootPlayers]
         return d
