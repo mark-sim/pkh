@@ -38,7 +38,7 @@ def matches(request):
         listOfMatchesJson.append(requests.get("https://api.pubg.com/shards/pc-na/matches/" + listOfMatches[i]['id'], headers= header).json())
         telemetryMatchId = listOfMatchesJson[i]['data']['relationships']['assets']['data'][0]['id']
         listOfTelemetryMatchId.append(telemetryMatchId)
-        request.session[telemetryMatchId] = listOfMatchesJson[i]
+        request.session[telemetryMatchId] = listOfMatchesJson[i]['attributes']['URL']
 
     dateArray = []
     rankingArray = []
@@ -65,15 +65,7 @@ def matches(request):
     return render(request, 'pkh/matches.html', {'zipList' : zipList})
 
 def hierarchy(request, matchId):
-    matchJson = request.session[matchId]
-
-    for includedArr in matchJson['included']:
-        try:
-            if includedArr['id'] == matchId:
-                # This is the telemetry URL with all data about the match.
-                telemetryURL = includedArr['attributes']['URL']
-        except Exception:
-            continue
+    telemetryURL = request.session[matchId]
 
     telemetryObject = requests.get(telemetryURL, headers = header).json()
 
