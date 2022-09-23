@@ -14,7 +14,7 @@ lxml==4.6.3
 Markdown==2.6.11
 Pillow==8.3.2
 pipenv==2018.7.1
-protobuf==3.5.2.post1
+protobuf==3.18.3
 python-dateutil==2.7.3
 pytz==2018.5
 requests==2.20.0
